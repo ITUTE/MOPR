@@ -1,0 +1,71 @@
+@startuml
+participant Actor
+Actor -> BillHistory : viewBillHistory
+activate BillHistory
+BillHistory -> BillDbHelper : new
+activate BillDbHelper
+BillDbHelper --> BillHistory
+deactivate BillDbHelper
+BillHistory -> BillDbHelper : getAllBills
+activate BillDbHelper
+BillDbHelper -> BillDbHelper : cursorToBill
+activate BillDbHelper
+BillDbHelper -> Bill : new
+activate Bill
+Bill --> BillDbHelper
+deactivate Bill
+BillDbHelper --> BillDbHelper
+deactivate BillDbHelper
+BillDbHelper -> Cart : new
+activate Cart
+Cart --> BillDbHelper
+deactivate Cart
+BillDbHelper -> ProductDbHelper : new
+activate ProductDbHelper
+ProductDbHelper --> BillDbHelper
+deactivate ProductDbHelper
+BillDbHelper -> ProductDbHelper : getProductById
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByField
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> BillDbHelper
+deactivate ProductDbHelper
+BillDbHelper --> BillHistory
+deactivate BillDbHelper
+BillHistory -> BillDbHelper : getUnpaidBills
+activate BillDbHelper
+BillDbHelper -> BillDbHelper : cursorToBill
+activate BillDbHelper
+BillDbHelper -> Bill : new
+activate Bill
+Bill --> BillDbHelper
+deactivate Bill
+BillDbHelper --> BillDbHelper
+deactivate BillDbHelper
+BillDbHelper --> BillHistory
+deactivate BillDbHelper
+return
+@enduml

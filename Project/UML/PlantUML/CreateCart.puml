@@ -1,0 +1,22 @@
+@startuml
+participant Actor
+Actor -> CartDetail : createCart
+activate CartDetail
+CartDetail -> CartDbHelper : new
+activate CartDbHelper
+CartDbHelper --> CartDetail
+deactivate CartDbHelper
+CartDetail -> Cart : setCartOrdered
+activate Cart
+Cart --> CartDetail
+deactivate Cart
+CartDetail -> CartDbHelper : update
+activate CartDbHelper
+CartDbHelper -> SQLiteDatabase : update
+activate SQLiteDatabase
+SQLiteDatabase --> CartDbHelper
+deactivate SQLiteDatabase
+CartDbHelper --> CartDetail
+deactivate CartDbHelper
+return
+@enduml

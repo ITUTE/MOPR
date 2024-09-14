@@ -1,0 +1,16 @@
+@startuml
+participant Actor
+Actor -> AccountSettings : setLogoutClick
+activate AccountSettings
+AccountSettings -> AccountSettings : λ→
+activate AccountSettings
+AccountSettings -> AccountSessionManager : logout
+activate AccountSessionManager
+AccountSessionManager --> AccountSettings
+activate AccountSettings
+AccountSettings --> AccountSettings
+deactivate AccountSettings
+AccountSettings --> AccountSettings
+deactivate AccountSettings
+return
+@enduml

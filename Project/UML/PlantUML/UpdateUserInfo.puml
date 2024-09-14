@@ -1,0 +1,13 @@
+@startuml
+participant Actor
+Actor -> AccountInfoActivity : updateUserInfo
+activate AccountInfoActivity
+AccountInfoActivity -> UserDbHelper : new
+activate UserDbHelper
+UserDbHelper --> AccountInfoActivity
+deactivate UserDbHelper
+AccountInfoActivity -> UserDbHelper : update
+deactivate UserDbHelper
+deactivate AccountInfoActivity
+return
+@enduml

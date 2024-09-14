@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "303340462813",
+    "project_id": "vietshop-18110377",
+    "storage_bucket": "vietshop-18110377.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303340462813:android:17d10dc3d70c941dd13134",
+        "android_client_info": {
+          "package_name": "hcmute.edu.vn.id18110377"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303340462813-4i717h4oqhm8opoqj8caecl4kfitdsam.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hcmute.edu.vn.id18110377",
+            "certificate_hash": "391887d8909cc24c65db28fbedcd5133aee1a7bb"
+          }
+        },
+        {
+          "client_id": "303340462813-062o9lfkufkrcs7kt6k1eucgsq1tulvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK5LoIBfZ72M0yADXntCH3c3jPBZ_VnlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303340462813-062o9lfkufkrcs7kt6k1eucgsq1tulvf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

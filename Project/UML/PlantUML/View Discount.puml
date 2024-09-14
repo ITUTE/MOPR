@@ -1,0 +1,104 @@
+@startuml
+participant Actor
+Actor -> DiscountFragment : searchDiscount
+activate DiscountFragment
+DiscountFragment -> DiscountFragment : getTopPromo
+activate DiscountFragment
+DiscountFragment -> ProductDbHelper : new
+activate ProductDbHelper
+ProductDbHelper --> DiscountFragment
+deactivate ProductDbHelper
+DiscountFragment -> ProductDbHelper : getPromoProducts
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorPromoProduct
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : λ→
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductById
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByField
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithStringValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithNumberValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> DiscountFragment
+deactivate ProductDbHelper
+DiscountFragment --> DiscountFragment
+deactivate DiscountFragment
+DiscountFragment -> DiscountFragment : getSearchResult
+activate DiscountFragment
+activate DiscountFragment
+DiscountFragment -> ProductDbHelper : new
+activate ProductDbHelper
+ProductDbHelper --> DiscountFragment
+deactivate ProductDbHelper
+DiscountFragment -> ProductDbHelper : getDiscountProductByName
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> Discount : new
+activate Discount
+Discount --> ProductDbHelper
+deactivate Discount
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> DiscountFragment
+deactivate ProductDbHelper
+activate DiscountFragment
+DiscountFragment --> DiscountFragment
+deactivate DiscountFragment
+DiscountFragment --> DiscountFragment
+deactivate DiscountFragment
+DiscountFragment --> DiscountFragment
+deactivate DiscountFragment
+return
+@enduml

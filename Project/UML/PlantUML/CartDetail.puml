@@ -1,0 +1,34 @@
+@startuml
+participant Actor
+Actor -> CartDetail : viewCartDetail
+activate CartDetail
+CartDetail -> CartDetail : setCartInfo
+activate CartDetail
+CartDetail -> CartDetail : setAddress
+activate CartDetail
+CartDetail --> CartDetail
+deactivate CartDetail
+CartDetail -> CartDetail : setQuantity
+activate CartDetail
+CartDetail -> CartDetail : calcPrice
+deactivate CartDetail
+CartDetail -> CartDetail : setBackgroundImage
+deactivate CartDetail
+CartDetail -> StoreDbHelper : new
+activate StoreDbHelper
+StoreDbHelper --> CartDetail
+deactivate StoreDbHelper
+CartDetail -> StoreDbHelper : getStoreById
+activate StoreDbHelper
+StoreDbHelper -> StoreDbHelper : cursorToStore
+activate StoreDbHelper
+StoreDbHelper -> Store : new
+activate Store
+Store --> StoreDbHelper
+deactivate Store
+StoreDbHelper --> StoreDbHelper
+deactivate StoreDbHelper
+StoreDbHelper --> CartDetail
+deactivate StoreDbHelper
+return
+@enduml

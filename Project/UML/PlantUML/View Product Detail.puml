@@ -1,0 +1,66 @@
+@startuml
+participant Actor
+Actor -> ProductDetail : viewProductDetail
+activate ProductDetail
+ProductDetail -> ProductDetail : λ→
+activate ProductDetail
+ProductDetail -> ProductDetail : setProduct
+activate ProductDetail
+ProductDetail -> ProductDbHelper : new
+activate ProductDbHelper
+ProductDbHelper --> ProductDetail
+deactivate ProductDbHelper
+ProductDetail -> ProductDbHelper : getProductById
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByField
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithStringValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithNumberValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDetail
+deactivate ProductDbHelper
+ProductDetail -> ProductDetail : setProductImage
+activate ProductDetail
+ProductDetail --> ProductDetail
+deactivate ProductDetail
+ProductDetail -> ProductDetail : setProductTitle
+activate ProductDetail
+ProductDetail --> ProductDetail
+deactivate ProductDetail
+ProductDetail -> ProductDetail : setProductDetail
+activate ProductDetail
+ProductDetail --> ProductDetail
+deactivate ProductDetail
+ProductDetail --> ProductDetail
+deactivate ProductDetail
+ProductDetail --> ProductDetail
+deactivate ProductDetail
+return
+@enduml

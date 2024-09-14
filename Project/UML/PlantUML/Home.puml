@@ -1,0 +1,93 @@
+@startuml
+participant Actor
+Actor -> HomeFragment : onCreateView
+activate HomeFragment
+activate HomeFragment
+HomeFragment -> ProductDbHelper : getPromoProducts
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorPromoProduct
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : λ→
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductById
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByField
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithStringValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithNumberValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> HomeFragment
+deactivate ProductDbHelper
+HomeFragment -> ProductAdapter : new
+activate ProductAdapter
+ProductAdapter --> HomeFragment
+deactivate ProductAdapter
+HomeFragment -> HomeFragment : λ→
+activate HomeFragment
+HomeFragment -> ProductAdapter : getItemId
+activate ProductAdapter
+ProductAdapter --> HomeFragment
+deactivate ProductAdapter
+HomeFragment --> HomeFragment
+deactivate HomeFragment
+HomeFragment --> Anonymous
+deactivate HomeFragment
+Anonymous -> HomeFragment : setProductItem
+activate HomeFragment
+HomeFragment -> ProductTypeDbHelper : new
+activate ProductTypeDbHelper
+ProductTypeDbHelper --> HomeFragment
+deactivate ProductTypeDbHelper
+HomeFragment -> ProductTypeAdapter : new
+activate ProductTypeAdapter
+ProductTypeAdapter --> HomeFragment
+deactivate ProductTypeAdapter
+HomeFragment -> HomeFragment : λ→
+activate HomeFragment
+HomeFragment -> ProductTypeAdapter : getItemId
+activate ProductTypeAdapter
+ProductTypeAdapter --> HomeFragment
+deactivate ProductTypeAdapter
+HomeFragment --> HomeFragment
+deactivate HomeFragment
+HomeFragment --> Anonymous
+deactivate HomeFragment
+Anonymous --> Anonymous
+deactivate Anonymous
+Anonymous --> HomeFragment
+deactivate Anonymous
+return
+@enduml

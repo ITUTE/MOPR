@@ -1,0 +1,14 @@
+@startuml
+participant Actor
+Actor -> Help : onCreate
+activate Help
+Help -> Help : λ→
+activate Help
+Help -> WebView : loadUrl
+activate WebView
+WebView --> Help
+deactivate WebView
+Help --> Help
+deactivate Help
+return
+@enduml

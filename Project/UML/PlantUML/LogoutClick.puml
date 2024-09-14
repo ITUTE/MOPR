@@ -1,0 +1,22 @@
+@startuml
+participant Actor
+Actor -> AccountSettings : setLogoutClick
+activate AccountSettings
+AccountSettings -> AccountSettings : λ→
+activate AccountSettings
+AccountSettings -> AccountSessionManager : logout
+activate AccountSessionManager
+AccountSessionManager -> FirebaseAuth : getInstance
+activate FirebaseAuth
+FirebaseAuth --> AccountSessionManager
+deactivate FirebaseAuth
+AccountSessionManager -> FirebaseAuth : signOut
+activate FirebaseAuth
+FirebaseAuth --> AccountSessionManager
+deactivate FirebaseAuth
+AccountSessionManager --> AccountSettings
+deactivate AccountSessionManager
+deactivate AccountSettings
+AccountSettings --> AccountSettings
+return
+@enduml

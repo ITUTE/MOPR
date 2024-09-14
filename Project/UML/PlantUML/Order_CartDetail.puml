@@ -1,0 +1,58 @@
+@startuml
+participant Actor
+Actor -> CartDetail : createOrder
+activate CartDetail
+CartDetail -> BillDbHelper : new
+activate BillDbHelper
+BillDbHelper --> CartDetail
+deactivate BillDbHelper
+CartDetail -> Bill : new
+activate Bill
+Bill -> Bill : new
+activate Bill
+Bill --> Bill
+deactivate Bill
+Bill --> CartDetail
+deactivate Bill
+CartDetail -> BillDbHelper : insert
+activate BillDbHelper
+BillDbHelper --> CartDetail
+deactivate BillDbHelper
+CartDetail -> CartDetail : createCart
+activate CartDetail
+CartDetail -> CartDbHelper : new
+activate CartDbHelper
+CartDbHelper --> CartDetail
+deactivate CartDbHelper
+CartDetail -> Cart : setCartOrdered
+activate Cart
+Cart --> CartDetail
+deactivate Cart
+CartDetail -> CartDbHelper : update
+activate CartDbHelper
+CartDbHelper --> CartDetail
+deactivate CartDbHelper
+CartDetail --> CartDetail
+deactivate CartDetail
+CartDetail -> CartDetail : createNotification
+activate CartDetail
+CartDetail -> NotificationDbHelper : new
+activate NotificationDbHelper
+NotificationDbHelper --> CartDetail
+deactivate NotificationDbHelper
+CartDetail -> Notification : new
+activate Notification
+Notification -> Notification : new
+activate Notification
+Notification --> Notification
+deactivate Notification
+Notification --> CartDetail
+deactivate Notification
+CartDetail -> NotificationDbHelper : insert
+activate NotificationDbHelper
+NotificationDbHelper --> CartDetail
+deactivate NotificationDbHelper
+CartDetail --> CartDetail
+deactivate CartDetail
+return
+@enduml

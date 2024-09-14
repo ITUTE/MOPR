@@ -1,0 +1,86 @@
+@startuml
+participant Actor
+Actor -> AccountInfoActivity : updateUserInfo
+activate AccountInfoActivity
+AccountInfoActivity -> User : setFullname
+activate User
+User --> AccountInfoActivity
+deactivate User
+AccountInfoActivity -> User : setAddress
+activate User
+User --> AccountInfoActivity
+deactivate User
+AccountInfoActivity -> User : setPhone
+activate User
+User --> AccountInfoActivity
+deactivate User
+AccountInfoActivity -> ImageConverter : drawable2Bitmap
+activate ImageConverter
+ImageConverter --> AccountInfoActivity
+deactivate ImageConverter
+AccountInfoActivity -> User : setAvatar
+activate User
+User --> AccountInfoActivity
+deactivate User
+AccountInfoActivity -> UserDbHelper : new
+activate UserDbHelper
+UserDbHelper --> AccountInfoActivity
+deactivate UserDbHelper
+AccountInfoActivity -> UserDbHelper : update
+activate UserDbHelper
+UserDbHelper -> UserDbHelper : createContentValues
+activate UserDbHelper
+UserDbHelper -> User : getFullname
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getAccountId
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getSex
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getPhone
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getAddress
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getRawAvatar
+activate User
+User -> User : getAvatar
+activate User
+User --> User
+deactivate User
+User -> ImageConverter : bitmap2Byte
+activate ImageConverter
+ImageConverter --> User
+deactivate ImageConverter
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getFacebook
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getZalo
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper -> User : getStatus
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper --> UserDbHelper
+deactivate UserDbHelper
+UserDbHelper -> User : getId
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper --> AccountInfoActivity
+deactivate UserDbHelper
+return
+@enduml

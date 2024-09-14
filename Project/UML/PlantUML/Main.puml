@@ -1,0 +1,42 @@
+@startuml
+participant Actor
+Actor -> MainActivity : onCreate
+activate MainActivity
+MainActivity -> AccountSessionManager : checkLogin
+activate AccountSessionManager
+AccountSessionManager -> AccountDbHelper : new
+activate AccountDbHelper
+AccountDbHelper --> AccountSessionManager
+deactivate AccountDbHelper
+AccountSessionManager -> AccountDbHelper : getAccountByEmail
+activate AccountDbHelper
+AccountDbHelper -> AccountDbHelper : cursorToAccount
+activate AccountDbHelper
+AccountDbHelper -> Account : new
+activate Account
+Account --> AccountDbHelper
+deactivate Account
+AccountDbHelper --> AccountDbHelper
+deactivate AccountDbHelper
+AccountDbHelper --> AccountSessionManager
+deactivate AccountDbHelper
+AccountSessionManager -> UserDbHelper : new
+activate UserDbHelper
+UserDbHelper --> AccountSessionManager
+deactivate UserDbHelper
+AccountSessionManager -> UserDbHelper : getUserByAccountId
+activate UserDbHelper
+UserDbHelper -> UserDbHelper : cursorToUser
+activate UserDbHelper
+UserDbHelper -> User : new
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper --> UserDbHelper
+deactivate UserDbHelper
+UserDbHelper --> AccountSessionManager
+deactivate UserDbHelper
+AccountSessionManager --> MainActivity
+deactivate AccountSessionManager
+return
+@enduml

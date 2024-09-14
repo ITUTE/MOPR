@@ -1,0 +1,101 @@
+@startuml
+participant Actor
+Actor -> SignUp : setSignUp
+activate SignUp
+SignUp -> SignUp : validate
+activate SignUp
+SignUp --> SignUp
+deactivate SignUp
+SignUp -> Account : new
+activate Account
+Account -> Account : new
+activate Account
+Account --> Account
+deactivate Account
+Account --> SignUp
+deactivate Account
+SignUp -> AccountDbHelper : new
+activate AccountDbHelper
+AccountDbHelper --> SignUp
+deactivate AccountDbHelper
+SignUp -> AccountDbHelper : insert
+activate AccountDbHelper
+AccountDbHelper --> SignUp
+deactivate AccountDbHelper
+SignUp -> AccountDbHelper : getAccountByRowId
+activate AccountDbHelper
+AccountDbHelper -> AccountDbHelper : cursorToAccount
+activate AccountDbHelper
+AccountDbHelper -> Account : new
+activate Account
+Account --> AccountDbHelper
+deactivate Account
+AccountDbHelper --> AccountDbHelper
+deactivate AccountDbHelper
+AccountDbHelper --> SignUp
+deactivate AccountDbHelper
+SignUp -> User : new
+activate User
+User -> User : new
+activate User
+User --> User
+deactivate User
+User --> SignUp
+deactivate User
+SignUp -> UserDbHelper : new
+activate UserDbHelper
+UserDbHelper --> SignUp
+deactivate UserDbHelper
+SignUp -> UserDbHelper : insert
+activate UserDbHelper
+deactivate UserDbHelper
+UserDbHelper --> SignUp
+deactivate UserDbHelper
+SignUp -> SignUp : createFirebaseUser
+activate SignUp
+SignUp --> SignUp
+deactivate SignUp
+SignUp -> FirebaseActivity : createAccount
+activate FirebaseActivity
+FirebaseActivity -> FirebaseActivity : λ→
+activate FirebaseActivity
+FirebaseActivity -> FirebaseActivity : updateAccountSession
+activate FirebaseActivity
+FirebaseActivity -> AccountDbHelper : new
+activate AccountDbHelper
+AccountDbHelper --> FirebaseActivity
+deactivate AccountDbHelper
+FirebaseActivity -> AccountDbHelper : getAccountByEmail
+activate AccountDbHelper
+AccountDbHelper -> AccountDbHelper : cursorToAccount
+activate AccountDbHelper
+AccountDbHelper -> Account : new
+activate Account
+Account --> AccountDbHelper
+deactivate Account
+AccountDbHelper --> AccountDbHelper
+deactivate AccountDbHelper
+AccountDbHelper --> FirebaseActivity
+deactivate AccountDbHelper
+FirebaseActivity -> UserDbHelper : new
+activate UserDbHelper
+UserDbHelper --> FirebaseActivity
+deactivate UserDbHelper
+FirebaseActivity -> UserDbHelper : getUserByAccountId
+activate UserDbHelper
+UserDbHelper -> UserDbHelper : cursorToUser
+activate UserDbHelper
+UserDbHelper -> User : new
+activate User
+User --> UserDbHelper
+deactivate User
+UserDbHelper --> UserDbHelper
+deactivate UserDbHelper
+UserDbHelper --> FirebaseActivity
+deactivate UserDbHelper
+FirebaseActivity --> FirebaseActivity
+deactivate FirebaseActivity
+FirebaseActivity --> FirebaseActivity
+deactivate FirebaseActivity
+return
+@enduml

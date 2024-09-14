@@ -1,0 +1,82 @@
+@startuml
+participant Actor
+Actor -> SearchResult : search
+activate SearchResult
+SearchResult -> SearchResult : λ→
+activate SearchResult
+SearchResult -> SearchResult : getSearchResult
+activate SearchResult
+SearchResult -> ProductDbHelper : new
+activate ProductDbHelper
+ProductDbHelper --> SearchResult
+deactivate ProductDbHelper
+SearchResult -> ProductDbHelper : getFullSearchResult
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByName
+activate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByField
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithStringValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getCursorWithNumberValue
+activate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductDbHelper : getProductByTypeName
+activate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> ProductDbHelper : cursorToProduct
+activate ProductDbHelper
+ProductDbHelper -> Product : new
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> ProductDbHelper
+deactivate ProductImageDbHelper
+ProductDbHelper -> Product : addProductImage
+activate Product
+Product --> ProductDbHelper
+deactivate Product
+ProductDbHelper --> ProductDbHelper
+deactivate ProductDbHelper
+ProductDbHelper --> SearchResult
+deactivate ProductDbHelper
+SearchResult --> SearchResult
+deactivate SearchResult
+SearchResult --> SearchResult
+deactivate SearchResult
+return
+@enduml

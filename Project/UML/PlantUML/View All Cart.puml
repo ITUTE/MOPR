@@ -1,0 +1,58 @@
+@startuml
+participant Actor
+Actor -> CartFragment : onCreateView
+activate CartFragment
+CartFragment -> CartFragment : login
+activate CartFragment
+CartFragment --> CartFragment
+deactivate CartFragment
+CartFragment -> CartFragment : getUnpaidCart
+activate CartFragment
+CartFragment -> CartDbHelper : new
+activate CartDbHelper
+CartDbHelper --> CartFragment
+deactivate CartDbHelper
+CartFragment -> CartDbHelper : getUnpaidCart
+activate CartDbHelper
+CartDbHelper -> CartDbHelper : getCartByStatus
+activate CartDbHelper
+CartDbHelper -> CartDbHelper : getCart
+activate CartDbHelper
+CartDbHelper -> ProductImageDbHelper : new
+activate ProductImageDbHelper
+ProductImageDbHelper --> CartDbHelper
+deactivate ProductImageDbHelper
+CartDbHelper -> CartDbHelper : cursorToCart
+activate CartDbHelper
+CartDbHelper -> Cart : new
+activate Cart
+Cart --> CartDbHelper
+deactivate Cart
+CartDbHelper --> CartDbHelper
+deactivate CartDbHelper
+CartDbHelper -> Product : new
+activate Product
+Product --> CartDbHelper
+deactivate Product
+CartDbHelper -> ProductImageDbHelper : getAllImageByProduct
+activate ProductImageDbHelper
+ProductImageDbHelper --> CartDbHelper
+deactivate ProductImageDbHelper
+CartDbHelper -> Product : addProductImage
+activate Product
+Product --> CartDbHelper
+deactivate Product
+CartDbHelper --> CartDbHelper
+deactivate CartDbHelper
+CartDbHelper --> CartDbHelper
+deactivate CartDbHelper
+CartDbHelper --> CartFragment
+deactivate CartDbHelper
+CartFragment -> CartAdapter : new
+activate CartAdapter
+CartAdapter --> CartFragment
+deactivate CartAdapter
+CartFragment --> CartFragment
+deactivate CartFragment
+return
+@enduml

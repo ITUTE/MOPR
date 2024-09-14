@@ -1,0 +1,30 @@
+@startuml
+participant Actor
+Actor -> CartDetail : createNotification
+activate CartDetail
+CartDetail -> NotificationDbHelper : new
+activate NotificationDbHelper
+NotificationDbHelper --> CartDetail
+deactivate NotificationDbHelper
+CartDetail -> Notification : new
+activate Notification
+Notification -> Notification : new
+activate Notification
+Notification --> Notification
+deactivate Notification
+Notification --> CartDetail
+deactivate Notification
+CartDetail -> NotificationDbHelper : insert
+activate NotificationDbHelper
+NotificationDbHelper -> NotificationDbHelper : createContentValues
+activate NotificationDbHelper
+NotificationDbHelper --> NotificationDbHelper
+deactivate NotificationDbHelper
+NotificationDbHelper -> SQLiteDatabase : insert
+activate SQLiteDatabase
+SQLiteDatabase --> NotificationDbHelper
+deactivate SQLiteDatabase
+NotificationDbHelper --> CartDetail
+deactivate NotificationDbHelper
+return
+@enduml
